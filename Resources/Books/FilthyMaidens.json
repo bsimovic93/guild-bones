@@ -1,0 +1,45 @@
+{
+	"book_title": "Filthy Maidens",
+	"author": "Boka Cechev",
+	"chapters": [
+		{
+			"title": "Chapter 1: The Beginning",
+			"pages": [
+				{
+					"number": 1,
+					"content": "Once upon a time there was a land far, far away..."
+				},
+				{
+					"number": 2,
+					"content": "There were some filthy maidens who lived in a small village."
+				}
+			]
+		}, 
+		{
+			"title": "Chapter 2: The Middle",
+			"pages": [
+				{
+					"number": 3,
+					"content": "The filthy maidens decided to go on an adventure."
+				},
+				{
+					"number": 4,
+					"content": "They faced many hard and long challenges along the way."
+				}
+			]
+		},
+        {
+			"title": "Chapter 3: The End",
+			"pages": [
+				{
+					"number": 5,
+					"content": "The filthy maidens finally reached the climax of their journey."
+				},
+				{
+					"number": 6,
+					"content": "They lived happily ever after."
+				}
+			]
+		}
+	]
+}

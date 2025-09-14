@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://rguvjpyx4sq5"]
+
+[ext_resource type="Texture2D" uid="uid://vkk8y2bohwn8" path="res://Sprites/Book1f.png" id="1_txdh8"]
+[ext_resource type="Texture2D" uid="uid://bx3tb2mapfge7" path="res://Sprites/Book1Highlght.png" id="2_hnsti"]
+[ext_resource type="Script" uid="uid://dbkujfurcfsjk" path="res://Scenes/HUD/Codex/BookPreview/BookPreview.cs" id="3_hnsti"]
+
+[node name="Book" type="TextureButton" groups=["BookGroup"]]
+texture_normal = ExtResource("1_txdh8")
+texture_hover = ExtResource("2_hnsti")
+script = ExtResource("3_hnsti")
+
+[connection signal="mouse_entered" from="." to="." method="_on_book_preview_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_book_preview_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

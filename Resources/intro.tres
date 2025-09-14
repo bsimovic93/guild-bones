@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bry1t5umht5fx"]
+
+[ext_resource type="Script" uid="uid://dh84yltxesl3j" path="res://Resources/DialogSequence.cs" id="1_qoax6"]
+
+[resource]
+script = ExtResource("1_qoax6")
+DialogLines = PackedStringArray("Hello there. Im going to the Holy Town", "Traveler, I see the wearinss in your eyes, and the dust of many roads upon your boots. This village may look humble, but do not be deceived—shadows move in the forest beyond our fields. Wolves howl when no moon hangs in the sky, and strange lights dance among the pines. If you truly seek to prove your courage, speak with Elder Marwen. He guards the old stories… and perhaps, the answers ", "Are you tierd?", "Do you want me to give you a potion?")

@@ -1,0 +1,45 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Guild Bones"
+run/main_scene="uid://k6ht74060q4s"
+config/features=PackedStringArray("4.5", "C#", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+CursorManager="*res://Scripts/Managers/CursorManager.cs"
+
+[display]
+
+window/size/viewport_width=960
+window/size/viewport_height=540
+window/size/resizable=false
+window/stretch/mode="viewport"
+window/stretch/aspect="keep_height"
+window/stretch/scale_mode="integer"
+
+[dotnet]
+
+project/assembly_name="Guild Bones"
+
+[global_group]
+
+BookGroup=""
+
+[gui]
+
+theme/custom_font="uid://rr1jiwfxvy8m"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

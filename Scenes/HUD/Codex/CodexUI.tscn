@@ -1,0 +1,187 @@
+[gd_scene load_steps=13 format=3 uid="uid://chmgdm3puitgf"]
+
+[ext_resource type="Script" uid="uid://dk6mhabekym7p" path="res://Scenes/HUD/Codex/CodexUi.cs" id="1_nb0n5"]
+[ext_resource type="Texture2D" uid="uid://bskiul05ixeou" path="res://Sprites/GuildCodex.png" id="2_28bax"]
+[ext_resource type="Texture2D" uid="uid://b4okgnq31rt43" path="res://Sprites/ButtonBackUI.png" id="3_nb0n5"]
+[ext_resource type="Shader" uid="uid://dfn8yg3la8mfv" path="res://Assets/Shaders/GText.gdshader" id="4_28bax"]
+[ext_resource type="Texture2D" uid="uid://bhdsllrnd1obk" path="res://Sprites/BookShelf.png" id="4_xxh6y"]
+[ext_resource type="PackedScene" uid="uid://rguvjpyx4sq5" path="res://Scenes/HUD/Codex/BookPreview/BookPreview.tscn" id="5_p6ja0"]
+[ext_resource type="Texture2D" uid="uid://bnp3lsu6rfkch" path="res://Sprites/Book2f.png" id="7_28bax"]
+[ext_resource type="PackedScene" uid="uid://5dbyheqs8lwp" path="res://Scenes/HUD/Codex/CodexBook/CodexBook.tscn" id="7_snyta"]
+[ext_resource type="Texture2D" uid="uid://hx378btb0yj6" path="res://Sprites/Book2Highlight.png" id="8_p6ja0"]
+[ext_resource type="Texture2D" uid="uid://dvtg60u8dmxga" path="res://Sprites/Book3f.png" id="9_ou6a3"]
+[ext_resource type="Texture2D" uid="uid://bfo50itlubb0n" path="res://Sprites/Book3fH.png" id="10_urjto"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p6ja0"]
+shader = ExtResource("4_28bax")
+
+[node name="CodexUI" type="CanvasLayer"]
+script = ExtResource("1_nb0n5")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.116717316, 0.159747, 0.23377141, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -104.0
+offset_top = 30.0
+offset_right = 104.0
+offset_bottom = 82.0
+grow_horizontal = 2
+texture = ExtResource("2_28bax")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 94.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="BackButton" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("3_nb0n5")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+material = SubResource("ShaderMaterial_p6ja0")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 110
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 150
+
+[node name="TopShelf" type="Control" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="CenterContainer/MarginContainer/VBoxContainer/TopShelf"]
+texture = ExtResource("4_xxh6y")
+
+[node name="GeographyGroup" type="HBoxContainer" parent="CenterContainer/MarginContainer/VBoxContainer/TopShelf"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.0
+offset_top = -106.0
+offset_right = 57.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 1
+
+[node name="TestBook" parent="CenterContainer/MarginContainer/VBoxContainer/TopShelf/GeographyGroup" instance=ExtResource("5_p6ja0")]
+layout_mode = 2
+
+[node name="FilthyMaidens" parent="CenterContainer/MarginContainer/VBoxContainer/TopShelf/GeographyGroup" instance=ExtResource("5_p6ja0")]
+layout_mode = 2
+texture_normal = ExtResource("7_28bax")
+texture_hover = ExtResource("8_p6ja0")
+
+[node name="Book3" parent="CenterContainer/MarginContainer/VBoxContainer/TopShelf/GeographyGroup" instance=ExtResource("5_p6ja0")]
+layout_mode = 2
+texture_normal = ExtResource("9_ou6a3")
+texture_hover = ExtResource("10_urjto")
+
+[node name="Book4" parent="CenterContainer/MarginContainer/VBoxContainer/TopShelf/GeographyGroup" instance=ExtResource("5_p6ja0")]
+layout_mode = 2
+
+[node name="History" type="HBoxContainer" parent="CenterContainer/MarginContainer/VBoxContainer/TopShelf"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -106.0
+offset_right = -69.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 1
+
+[node name="Book" parent="CenterContainer/MarginContainer/VBoxContainer/TopShelf/History" instance=ExtResource("5_p6ja0")]
+layout_mode = 2
+
+[node name="Book2" parent="CenterContainer/MarginContainer/VBoxContainer/TopShelf/History" instance=ExtResource("5_p6ja0")]
+layout_mode = 2
+texture_normal = ExtResource("7_28bax")
+texture_hover = ExtResource("8_p6ja0")
+
+[node name="Book3" parent="CenterContainer/MarginContainer/VBoxContainer/TopShelf/History" instance=ExtResource("5_p6ja0")]
+layout_mode = 2
+
+[node name="Book4" parent="CenterContainer/MarginContainer/VBoxContainer/TopShelf/History" instance=ExtResource("5_p6ja0")]
+layout_mode = 2
+texture_normal = ExtResource("9_ou6a3")
+texture_hover = ExtResource("10_urjto")
+
+[node name="MonterGroup" type="HBoxContainer" parent="CenterContainer/MarginContainer/VBoxContainer/TopShelf"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 95.0
+offset_top = 43.0
+offset_right = 226.0
+offset_bottom = 140.00006
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 1
+
+[node name="Book" parent="CenterContainer/MarginContainer/VBoxContainer/TopShelf/MonterGroup" instance=ExtResource("5_p6ja0")]
+layout_mode = 2
+texture_normal = ExtResource("9_ou6a3")
+texture_hover = ExtResource("10_urjto")
+
+[node name="Book3" parent="CenterContainer/MarginContainer/VBoxContainer/TopShelf/MonterGroup" instance=ExtResource("5_p6ja0")]
+layout_mode = 2
+
+[node name="Book2" parent="CenterContainer/MarginContainer/VBoxContainer/TopShelf/MonterGroup" instance=ExtResource("5_p6ja0")]
+layout_mode = 2
+texture_normal = ExtResource("7_28bax")
+texture_hover = ExtResource("8_p6ja0")
+
+[node name="Book4" parent="CenterContainer/MarginContainer/VBoxContainer/TopShelf/MonterGroup" instance=ExtResource("5_p6ja0")]
+layout_mode = 2
+
+[node name="BottomShelf" type="Control" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="CenterContainer/MarginContainer/VBoxContainer/BottomShelf"]
+texture = ExtResource("4_xxh6y")
+
+[node name="CodexBook" parent="." instance=ExtResource("7_snyta")]
+unique_name_in_owner = true
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BackButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/TopShelf/History/Book" to="." method="_on_book_pressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/TopShelf/MonterGroup/Book" to="." method="_on_book_pressed"]

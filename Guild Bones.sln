@@ -1,0 +1,19 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guild Bones", "Guild Bones.csproj", "{95DD6E63-E0CD-4F8A-B3BE-913B6A5EC267}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	Debug|Any CPU = Debug|Any CPU
+	ExportDebug|Any CPU = ExportDebug|Any CPU
+	ExportRelease|Any CPU = ExportRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{95DD6E63-E0CD-4F8A-B3BE-913B6A5EC267}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95DD6E63-E0CD-4F8A-B3BE-913B6A5EC267}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95DD6E63-E0CD-4F8A-B3BE-913B6A5EC267}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{95DD6E63-E0CD-4F8A-B3BE-913B6A5EC267}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{95DD6E63-E0CD-4F8A-B3BE-913B6A5EC267}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{95DD6E63-E0CD-4F8A-B3BE-913B6A5EC267}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+	EndGlobalSection
+EndGlobal

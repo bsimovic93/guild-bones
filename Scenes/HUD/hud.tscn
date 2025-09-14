@@ -1,0 +1,134 @@
+[gd_scene load_steps=8 format=3 uid="uid://caj0jud01grj0"]
+
+[ext_resource type="Theme" uid="uid://dtw8vbfvpsnny" path="res://Themes/base_theme.tres" id="1_48c2t"]
+[ext_resource type="Script" uid="uid://pn5rs25c1oh2" path="res://Scenes/HUD/DialogBox.cs" id="2_cgeww"]
+[ext_resource type="Resource" uid="uid://bry1t5umht5fx" path="res://Resources/intro.tres" id="3_c45xl"]
+[ext_resource type="Texture2D" uid="uid://crj1vfiwycq7b" path="res://Sprites/ButtonUI.png" id="4_0bx4p"]
+[ext_resource type="PackedScene" uid="uid://chmgdm3puitgf" path="res://Scenes/HUD/Codex/CodexUI.tscn" id="5_mgtrf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c45xl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c45xl"]
+bg_color = Color(0.11372549, 0.11372549, 0.12941177, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.17449972, 0.19386852, 0.21018183, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -480.0
+offset_top = -168.0
+offset_right = 480.0
+offset_bottom = -0.0013427734
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_48c2t")
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="DialogBox" type="PanelContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+script = ExtResource("2_cgeww")
+dialogSequence = ExtResource("3_c45xl")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/DialogBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 15
+
+[node name="DialogText" type="RichTextLabel" parent="MarginContainer/DialogBox/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 21
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 2
+
+[node name="DialogBoxBg" type="Panel" parent="MarginContainer/DialogBox"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_c45xl")
+
+[node name="NameTag" type="Panel" parent="MarginContainer/DialogBox/DialogBoxBg"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -162.0
+offset_top = -30.0
+offset_right = -22.0
+offset_bottom = 10.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_c45xl")
+
+[node name="HeroName" type="Label" parent="MarginContainer/DialogBox/DialogBoxBg/NameTag"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 21
+text = "NPC Default"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="MarginContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 47.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Buttons"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="CodexButton" type="TextureButton" parent="Buttons/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("4_0bx4p")
+
+[node name="CodexUI" parent="." instance=ExtResource("5_mgtrf")]
+unique_name_in_owner = true
+visible = false
+
+[node name="Transition" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="TransitionScreen" type="ColorRect" parent="Transition"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.10002083, 0.119593, 0.11959205, 0)
+
+[connection signal="gui_input" from="MarginContainer/DialogBox" to="MarginContainer/DialogBox" method="_on_DialogBox_gui_input"]
+[connection signal="pressed" from="Buttons/HBoxContainer/CodexButton" to="MarginContainer/DialogBox" method="_on_codex_button_pressed"]

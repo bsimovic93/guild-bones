@@ -1,0 +1,32 @@
+{
+	"book_title": "The Tale of the Brave Knight",
+	"author": "John Doe",
+	"chapters": [
+		{
+			"title": "Chapter 1: The Beginning",
+			"pages": [
+				{
+					"number": 1,
+					"content": "Once upon a time in a land far, far away..."
+				},
+				{
+					"number": 2,
+					"content": "There lived a brave knight named Sir Lancelot."
+				}
+			]
+		}, 
+		{
+			"title": "Chapter 2: The Middle",
+			"pages": [
+				{
+					"number": 3,
+					"content": "Sir Lancelot embarked on a quest to find the Holy Grail."
+				},
+				{
+					"number": 4,
+					"content": "He faced many challenges along the way."
+				}
+			]
+		}
+	]
+}
