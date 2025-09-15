@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://5dbyheqs8lwp"]
+[gd_scene load_steps=13 format=3 uid="uid://5dbyheqs8lwp"]
 
 [ext_resource type="Script" uid="uid://c5wjnmeckfg0u" path="res://Scenes/HUD/Codex/CodexBook/CodexBook.cs" id="1_r6n5g"]
 [ext_resource type="Texture2D" uid="uid://cikc3lfjxyywp" path="res://Sprites/BookOpen.png" id="1_ui2k1"]
@@ -7,7 +7,11 @@
 [ext_resource type="FontFile" uid="uid://dutm5by1oh50b" path="res://Assets/Fonts/PIXELADE.TTF" id="4_4dnjt"]
 [ext_resource type="Texture2D" uid="uid://dvcswhbyxmkoh" path="res://Sprites/CloseBook.png" id="4_r6n5g"]
 [ext_resource type="Texture2D" uid="uid://rtnwcb40cay4" path="res://Sprites/CloseBookPressed.png" id="5_2058b"]
+[ext_resource type="Texture2D" uid="uid://bd8ps1544n152" path="res://Sprites/BookArrowLeft.png" id="6_l7v10"]
+[ext_resource type="Texture2D" uid="uid://beog4fqhgjixx" path="res://Sprites/BookArrowLeftDisabled.png" id="7_oicqp"]
 [ext_resource type="Texture2D" uid="uid://3t5rxfkkawfa" path="res://Sprites/CloseBookH.png" id="8_pi76u"]
+[ext_resource type="Texture2D" uid="uid://p3pqh2imsifo" path="res://Sprites/BookArrowRight.png" id="8_sy35r"]
+[ext_resource type="Texture2D" uid="uid://b48dm8cbf2uap" path="res://Sprites/BookArrowRightDisabled.png" id="9_t4ogd"]
 
 [node name="Overlay" type="ColorRect"]
 visible = false
@@ -149,6 +153,28 @@ text = "This is a test textdeaf  "
 [node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/Control/ReferenceRect/BookContainer/PageRight"]
 layout_mode = 2
 border_color = Color(0.49404317, 0.5787829, 0.17831072, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 200
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 300
+alignment = 1
+
+[node name="TurnLeft" type="TextureButton" parent="CenterContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("6_l7v10")
+texture_disabled = ExtResource("7_oicqp")
+
+[node name="TurnRight" type="TextureButton" parent="CenterContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("8_sy35r")
+texture_disabled = ExtResource("9_t4ogd")
 
 [node name="CloseBookButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
