@@ -165,12 +165,14 @@ theme_override_constants/separation = 300
 alignment = 1
 
 [node name="TurnLeft" type="TextureButton" parent="CenterContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("6_l7v10")
 texture_disabled = ExtResource("7_oicqp")
 
 [node name="TurnRight" type="TextureButton" parent="CenterContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("8_sy35r")
@@ -195,4 +197,6 @@ texture_normal = ExtResource("4_r6n5g")
 texture_pressed = ExtResource("5_2058b")
 texture_hover = ExtResource("8_pi76u")
 
+[connection signal="pressed" from="CenterContainer/MarginContainer/HBoxContainer/TurnLeft" to="." method="_on_turn_left_pressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/HBoxContainer/TurnRight" to="." method="_on_turn_right_pressed"]
 [connection signal="pressed" from="CloseBookButton" to="." method="_on_close_book_button_pressed"]

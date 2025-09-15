@@ -5,6 +5,7 @@ public partial class CodexBook : ColorRect
 {
 
 	private int currentPageIndex = 0;
+	private bool isOnStartPages = true;
 	Book currentBook;
 
 	// Called when the node enters the scene tree for the first time.
@@ -52,6 +53,9 @@ public partial class CodexBook : ColorRect
 	public void DisplayBook()
 	{
 		ShowStartPages();
+		isOnStartPages = true;
+		GetNode<TextureButton>("%TurnLeft").Disabled = true;
+		GetNode<TextureButton>("%TurnRight").Disabled = false;
 		DisplayUtils.FadeIn(this, 0.25f);
 		TimerUtils.DelayedAction(GetTree(), 150, () =>
 				{
@@ -122,6 +126,25 @@ public partial class CodexBook : ColorRect
 		}));
 
 
+	}
+
+	private void _on_turn_left_pressed()
+	{
+		GD.Print("Turn left");
+	}
+
+	private void _on_turn_right_pressed()
+	{
+		GD.Print("Turn right");
+		if (isOnStartPages)
+		{
+			HideStartPages();
+			isOnStartPages = false;
+			GetNode<TextureButton>("%TurnLeft").Disabled = false;
+		}
+		else
+		{
+		}
 	}
 
 }
