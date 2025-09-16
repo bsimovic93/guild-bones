@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://chmgdm3puitgf"]
+[gd_scene load_steps=14 format=3 uid="uid://chmgdm3puitgf"]
 
 [ext_resource type="Script" uid="uid://dk6mhabekym7p" path="res://Scenes/HUD/Codex/CodexUi.cs" id="1_nb0n5"]
 [ext_resource type="Texture2D" uid="uid://bskiul05ixeou" path="res://Sprites/GuildCodex.png" id="2_28bax"]
@@ -12,8 +12,10 @@
 [ext_resource type="Texture2D" uid="uid://dvtg60u8dmxga" path="res://Sprites/Book3f.png" id="9_ou6a3"]
 [ext_resource type="Texture2D" uid="uid://bfo50itlubb0n" path="res://Sprites/Book3fH.png" id="10_urjto"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_p6ja0"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ou6a3"]
 shader = ExtResource("4_28bax")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p6ja0"]
 
 [node name="CodexUI" type="CanvasLayer"]
 script = ExtResource("1_nb0n5")
@@ -27,6 +29,7 @@ grow_vertical = 2
 color = Color(0.116717316, 0.159747, 0.23377141, 1)
 
 [node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_ou6a3")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
