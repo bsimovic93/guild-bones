@@ -17,6 +17,7 @@ public partial class DialogBox : PanelContainer
 	public override void _Ready()
 	{
 		richLabel = GetNode<RichTextLabel>("%DialogText");
+		richLabel.Text = "";
 
 		Visible = false;
 		GetParent<Control>().Position += new Vector2(0, 200);

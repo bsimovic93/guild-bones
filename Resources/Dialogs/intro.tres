@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=2 format=3 uid="uid://bry1t5umht5fx"]
 
-[ext_resource type="Script" uid="uid://dh84yltxesl3j" path="res://Resources/DialogSequence.cs" id="1_qoax6"]
+[ext_resource type="Script" uid="uid://dh84yltxesl3j" path="res://Resources/Dialogs/DialogSequence.cs" id="1_qoax6"]
 
 [resource]
 script = ExtResource("1_qoax6")

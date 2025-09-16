@@ -1,10 +1,11 @@
 using Godot;
 using System.Text.Json;
+using System.Linq;
 
 public partial class CodexBook : ColorRect
 {
 
-	private int currentPageIndex = 0;
+	private int currentPage = 0;
 	private bool isOnStartPages = true;
 	Book currentBook;
 
@@ -32,16 +33,11 @@ public partial class CodexBook : ColorRect
 		}
 		foreach (var chapter in currentBook.Chapters)
 		{
-			Label chapterLabel = new Label();
-			chapterLabel.MouseDefaultCursorShape = Control.CursorShape.PointingHand;
-			chapterLabel.MouseFilter = Control.MouseFilterEnum.Pass;
-			chapterLabel.Connect("gui_input", new Callable(this, nameof(OnChapterLabelGuiInput)));
-			chapterLabel.Connect("mouse_entered", Callable.From(() => OnChapterLabelMouseEntered(chapterLabel)));
-
+			var chapterLabel = (ChapterLabel)GD.Load<PackedScene>("res://Scenes/HUD/Codex/CodexBook/ChapterLabel.tscn").Instantiate();
 			chapterLabel.Text = chapter.Title;
-			chapterLabel.AddThemeFontSizeOverride("font_size", 13);
-			chapterLabel.AddThemeColorOverride("font_color", DisplayUtils.BookTextColor);
-			chapterLabel.AddThemeFontOverride("font", GD.Load<Font>("res://Assets/Fonts/PIXELADE.ttf"));
+			chapterLabel.ChapterIndex = currentBook.Chapters.IndexOf(chapter);
+			chapterLabel.ChapterStartPage = chapter.Pages[0].Number;
+			chapterLabel.ChapterClicked += GoToPage;
 			tableOfContents.AddChild(chapterLabel);
 		}
 		GetNode<Label>("%Title").Text = currentBook.BookTitle;
@@ -52,7 +48,7 @@ public partial class CodexBook : ColorRect
 
 	public void DisplayBook()
 	{
-		ShowStartPages();
+		ToggleStartPage(true);
 		isOnStartPages = true;
 		GetNode<TextureButton>("%TurnLeft").Disabled = true;
 		GetNode<TextureButton>("%TurnRight").Disabled = false;
@@ -68,47 +64,59 @@ public partial class CodexBook : ColorRect
 				});
 	}
 
-	// When we click on a chapter in the table of contents, we want to hide the start pages and show the chapter pages
-	private void OnChapterLabelGuiInput(InputEvent @event)
+	/// <summary>
+	/// Go to a specific page in the book. The page on the left is odd, the page on the right is even.
+	/// If the page number is out of range, do nothing.
+	/// </summary>
+	/// <param name="pageNumber"></param>
+	public void GoToPage(int pageNumber)
 	{
-		if (@event is InputEventMouseButton mouseEvent && mouseEvent.Pressed && mouseEvent.ButtonIndex == MouseButton.Left) HideStartPages();
-	}
+		GD.Print($"Going to page {pageNumber}");
+		currentPage = pageNumber;
 
-	private void HideStartPages()
-	{
+		if (pageNumber >= currentBook.Chapters.Last().Pages.Last().Number + 1)
+		{
+			GetNode<TextureButton>("%TurnRight").Disabled = true;
+			return;
+		}
+		if (pageNumber <= 0)
+		{
+			ToggleStartPage(true);
+			isOnStartPages = true;
+			GetNode<TextureButton>("%TurnLeft").Disabled = true;
+			GetNode<TextureButton>("%TurnRight").Disabled = false;
+			return;
+		}
+
+
 		var bookContainer = GetNode<HBoxContainer>("%BookContainer");
-		bookContainer.GetChild<Control>(0).Visible = false;
-		bookContainer.GetChild<Control>(1).Visible = false;
+		ToggleStartPage(false);
+		isOnStartPages = false;
 
-		bookContainer.GetChild<Control>(2).Visible = true;
-		bookContainer.GetChild<Control>(3).Visible = true;
+		GetNode<TextureButton>("%TurnLeft").Disabled = false;
 
-		currentPageIndex = 0;
 
 		var leftPage = bookContainer.GetChild<Control>(2).GetChild<RichTextLabel>(0);
 		var rightPage = bookContainer.GetChild<Control>(3).GetChild<RichTextLabel>(0);
 
-		leftPage.Text = currentBook.Chapters[0].Pages[currentPageIndex].Content;
-		rightPage.Text = currentBook.Chapters[0].Pages[currentPageIndex + 1].Content;
+		var allPages = currentBook.Chapters.SelectMany(c => c.Pages).ToList();
+		var left = allPages.FirstOrDefault(p => p.Number == pageNumber);
+		var right = allPages.FirstOrDefault(p => p.Number == pageNumber + 1);
 
-
+		leftPage.Text = left != null ? left.Content : "";
+		rightPage.Text = right != null ? right.Content : "";
 
 	}
 
-	private void ShowStartPages()
+	private void ToggleStartPage(bool showStartPages)
 	{
 		var bookContainer = GetNode<HBoxContainer>("%BookContainer");
-		bookContainer.GetChild<Control>(0).Visible = true;
-		bookContainer.GetChild<Control>(1).Visible = true;
-
-		bookContainer.GetChild<Control>(2).Visible = false;
-		bookContainer.GetChild<Control>(3).Visible = false;
+		bookContainer.GetChild<Control>(0).Visible = showStartPages;
+		bookContainer.GetChild<Control>(1).Visible = showStartPages;
+		bookContainer.GetChild<Control>(2).Visible = !showStartPages;
+		bookContainer.GetChild<Control>(3).Visible = !showStartPages;
 	}
 
-	private void OnChapterLabelMouseEntered(Control chapterLabel)
-	{
-		// GD.Print($"Chapter {chapterLabel} hovered");
-	}
 
 	private void _on_close_book_button_pressed()
 	{
@@ -124,27 +132,18 @@ public partial class CodexBook : ColorRect
 			Visible = false;
 			GetNode<TextureButton>("%CloseBookButton").Disabled = false;
 		}));
-
-
 	}
 
 	private void _on_turn_left_pressed()
 	{
-		GD.Print("Turn left");
+		currentPage -= 2;
+		GoToPage(currentPage);
 	}
 
 	private void _on_turn_right_pressed()
 	{
-		GD.Print("Turn right");
-		if (isOnStartPages)
-		{
-			HideStartPages();
-			isOnStartPages = false;
-			GetNode<TextureButton>("%TurnLeft").Disabled = false;
-		}
-		else
-		{
-		}
+		currentPage += isOnStartPages ? 1 : 2;
+		GoToPage(currentPage);
 	}
 
 }
