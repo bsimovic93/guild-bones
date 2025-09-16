@@ -50,6 +50,7 @@ public partial class CodexBook : ColorRect
 	{
 		ToggleStartPage(true);
 		isOnStartPages = true;
+		currentPage = 0;
 		GetNode<TextureButton>("%TurnLeft").Disabled = true;
 		GetNode<TextureButton>("%TurnRight").Disabled = false;
 		DisplayUtils.FadeIn(this, 0.25f);
@@ -74,15 +75,18 @@ public partial class CodexBook : ColorRect
 		GD.Print($"Going to page {pageNumber}");
 		currentPage = pageNumber;
 
-		if (pageNumber >= currentBook.Chapters.Last().Pages.Last().Number + 1)
+
+		int lastPageNumber = currentBook.Chapters.SelectMany(c => c.Pages).Max(p => p.Number);
+		if (pageNumber + 2 >= lastPageNumber)
 		{
 			GetNode<TextureButton>("%TurnRight").Disabled = true;
-			return;
 		}
+		
 		if (pageNumber <= 0)
 		{
 			ToggleStartPage(true);
 			isOnStartPages = true;
+			currentPage = 0;
 			GetNode<TextureButton>("%TurnLeft").Disabled = true;
 			GetNode<TextureButton>("%TurnRight").Disabled = false;
 			return;
