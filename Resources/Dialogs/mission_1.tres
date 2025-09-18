@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://xgb8fpvk1ivp"]
+
+[ext_resource type="Script" uid="uid://dh84yltxesl3j" path="res://Resources/Dialogs/DialogSequence.cs" id="1_cahs3"]
+
+[resource]
+script = ExtResource("1_cahs3")
+CharacterName = "Lady Donna"
+DialogLines = PackedStringArray("I greet you Guild Master", "I have a small favor to ask of you, I come from a small village from up north and im having some problems with my farm", "Snow trolls keep attacking and killing all my chickens", "Could you help me deal with this foul creature, there would be a handsome reward for you")

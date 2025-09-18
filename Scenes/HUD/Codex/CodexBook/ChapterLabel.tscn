@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dn8w28x3hcy8r"]
+
+[ext_resource type="FontFile" uid="uid://dutm5by1oh50b" path="res://Assets/Fonts/PIXELADE.TTF" id="1_qqupp"]
+[ext_resource type="Script" uid="uid://vgom1ydgs67c" path="res://Scenes/HUD/Codex/CodexBook/ChapterLabel.cs" id="2_wy1nh"]
+
+[node name="ChapterLabel" type="RichTextLabel"]
+mouse_default_cursor_shape = 2
+theme_override_colors/default_color = Color(0.38701904, 0.27434775, 0.1442247, 1)
+theme_override_fonts/normal_font = ExtResource("1_qqupp")
+theme_override_font_sizes/normal_font_size = 13
+text = "Chapter 1: Test"
+fit_content = true
+script = ExtResource("2_wy1nh")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

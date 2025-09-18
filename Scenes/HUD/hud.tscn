@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://dtw8vbfvpsnny" path="res://Themes/base_theme.tres" id="1_48c2t"]
 [ext_resource type="Script" uid="uid://pn5rs25c1oh2" path="res://Scenes/HUD/DialogBox.cs" id="2_cgeww"]
-[ext_resource type="Resource" uid="uid://bry1t5umht5fx" path="res://Resources/intro.tres" id="3_c45xl"]
+[ext_resource type="Resource" uid="uid://xgb8fpvk1ivp" path="res://Resources/Dialogs/mission_1.tres" id="3_6pkbx"]
 [ext_resource type="Texture2D" uid="uid://crj1vfiwycq7b" path="res://Sprites/ButtonUI.png" id="4_0bx4p"]
 [ext_resource type="PackedScene" uid="uid://chmgdm3puitgf" path="res://Scenes/HUD/Codex/CodexUI.tscn" id="5_mgtrf"]
 
@@ -46,7 +46,7 @@ theme_override_constants/margin_bottom = 20
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 script = ExtResource("2_cgeww")
-dialogSequence = ExtResource("3_c45xl")
+dialogSequence = ExtResource("3_6pkbx")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/DialogBox"]
 layout_mode = 2
@@ -60,6 +60,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 21
 bbcode_enabled = true
+text = "This is some test text"
 fit_content = true
 autowrap_mode = 2
 
