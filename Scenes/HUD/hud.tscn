@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://caj0jud01grj0"]
+[gd_scene load_steps=10 format=3 uid="uid://caj0jud01grj0"]
 
 [ext_resource type="Theme" uid="uid://dtw8vbfvpsnny" path="res://Themes/base_theme.tres" id="1_48c2t"]
 [ext_resource type="Script" uid="uid://pn5rs25c1oh2" path="res://Scenes/HUD/DialogBox.cs" id="2_cgeww"]
 [ext_resource type="Resource" uid="uid://xgb8fpvk1ivp" path="res://Resources/Dialogs/mission_1.tres" id="3_6pkbx"]
-[ext_resource type="Texture2D" uid="uid://crj1vfiwycq7b" path="res://Sprites/ButtonUI.png" id="4_0bx4p"]
+[ext_resource type="Texture2D" uid="uid://clvnpkm08kuce" path="res://Sprites/test.png" id="4_1owdh"]
+[ext_resource type="Texture2D" uid="uid://d0wfxh888s34e" path="res://Sprites/Mission.png" id="5_ewgg5"]
 [ext_resource type="PackedScene" uid="uid://chmgdm3puitgf" path="res://Scenes/HUD/Codex/CodexUI.tscn" id="5_mgtrf"]
+[ext_resource type="PackedScene" uid="uid://dl54quptndc1f" path="res://Scenes/HUD/MissonScreen/MissionScreen.tscn" id="6_8wqxc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c45xl"]
 
@@ -23,7 +25,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.17449972, 0.19386852, 0.21018183, 1)
+color = Color(0.06233552, 0.10427082, 0.17213294, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 7
@@ -95,9 +97,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Buttons" type="MarginContainer" parent="."]
+z_index = 20
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 47.0
+offset_bottom = 94.0
 grow_horizontal = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
@@ -106,16 +109,24 @@ theme_override_constants/margin_bottom = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Buttons"]
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 30
 
 [node name="CodexButton" type="TextureButton" parent="Buttons/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("4_0bx4p")
+texture_normal = ExtResource("4_1owdh")
+
+[node name="TextureButton" type="TextureButton" parent="Buttons/HBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("5_ewgg5")
 
 [node name="CodexUI" parent="." instance=ExtResource("5_mgtrf")]
 unique_name_in_owner = true
+visible = false
+
+[node name="MissionScreen" parent="." instance=ExtResource("6_8wqxc")]
 visible = false
 
 [node name="Transition" type="CanvasLayer" parent="."]

@@ -184,6 +184,7 @@ texture = ExtResource("4_xxh6y")
 
 [node name="CodexBook" parent="." instance=ExtResource("7_snyta")]
 unique_name_in_owner = true
+visible = false
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/BackButton" to="." method="_on_texture_button_pressed"]
 [connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/TopShelf/History/Book" to="." method="_on_book_pressed"]
